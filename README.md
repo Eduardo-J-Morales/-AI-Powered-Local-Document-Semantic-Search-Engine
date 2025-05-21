@@ -1,2 +1,3 @@
 # Music-Production-Collaboration-Platform
-This web application enables musicians to collaborate on music projects. Users can upload audio tracks, manage different versions, leave time-stamped comments on specific parts of a track, and collaboratively mix and master.
+
+A web application built with SvelteKit that provides a side-by-side interface for typing Markdown in one pane and seeing an instant HTML preview in the other. Key features include real-time updating, Markdown syntax highlighting, and potentially themes and HTML export. It utilizes SvelteKit (with TypeScript), a Markdown parsing library like marked.js, and potentially Tailwind CSS for styling
