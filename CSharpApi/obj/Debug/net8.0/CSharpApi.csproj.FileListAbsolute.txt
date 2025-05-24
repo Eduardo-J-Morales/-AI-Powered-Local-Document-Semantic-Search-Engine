@@ -11,8 +11,6 @@
 /root/Desktop-Document-Tagging-Utility/CSharpApi/obj/Debug/net8.0/CSharpApi.AssemblyInfo.cs
 /root/Desktop-Document-Tagging-Utility/CSharpApi/obj/Debug/net8.0/CSharpApi.csproj.CoreCompileInputs.cache
 /root/Desktop-Document-Tagging-Utility/CSharpApi/obj/Debug/net8.0/CSharpApi.MvcApplicationPartsAssemblyInfo.cache
-/root/Desktop-Document-Tagging-Utility/CSharpApi/obj/Debug/net8.0/CSharpApi.RazorAssemblyInfo.cache
-/root/Desktop-Document-Tagging-Utility/CSharpApi/obj/Debug/net8.0/CSharpApi.RazorAssemblyInfo.cs
 /root/Desktop-Document-Tagging-Utility/CSharpApi/obj/Debug/net8.0/CSharpApi.sourcelink.json
 /root/Desktop-Document-Tagging-Utility/CSharpApi/obj/Debug/net8.0/staticwebassets.build.json
 /root/Desktop-Document-Tagging-Utility/CSharpApi/obj/Debug/net8.0/staticwebassets.development.json
@@ -21,9 +19,7 @@
 /root/Desktop-Document-Tagging-Utility/CSharpApi/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.CSharpApi.props
 /root/Desktop-Document-Tagging-Utility/CSharpApi/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.CSharpApi.props
 /root/Desktop-Document-Tagging-Utility/CSharpApi/obj/Debug/net8.0/staticwebassets.pack.json
-/root/Desktop-Document-Tagging-Utility/CSharpApi/obj/Debug/net8.0/scopedcss/Pages/Shared/_Layout.cshtml.rz.scp.css
 /root/Desktop-Document-Tagging-Utility/CSharpApi/obj/Debug/net8.0/scopedcss/bundle/CSharpApi.styles.css
-/root/Desktop-Document-Tagging-Utility/CSharpApi/obj/Debug/net8.0/scopedcss/projectbundle/CSharpApi.bundle.scp.css
 /root/Desktop-Document-Tagging-Utility/CSharpApi/obj/Debug/net8.0/CSharpApi.dll
 /root/Desktop-Document-Tagging-Utility/CSharpApi/obj/Debug/net8.0/refint/CSharpApi.dll
 /root/Desktop-Document-Tagging-Utility/CSharpApi/obj/Debug/net8.0/CSharpApi.pdb
