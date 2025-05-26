@@ -37,10 +37,11 @@ app.MapPost("/api/documents/upload", async (FileMetadataDto dto) =>
           using var conn = new NpgsqlConnection(connectionString);
             await conn.OpenAsync();
 
-        using var cmd = new Npgsqlcommand("INSERT INTO file_metadata (filename, content_type, size) VALUES (@filename, @content_ type, @size)", conn);
+        using var cmd = new Npgsqlcommand("INSERT INTO file_metadata (filename, content_type, size, route) VALUES (@filename, @content_ type, @size, @route)", conn);
         cmd.Parameters.addWithValue("filename", dto.Filename);
         cmd.Parameters.addWithValue("content_type", dto.ContentType ?? (object)DBNull.Value);
         cmd.Parameters.addWithValue("size", dto.Size);
+        cmd.Parameters.addWithValue(("route", dto.Route);
     }
 );
 app.MapGet("/", () => " Hellow world");
