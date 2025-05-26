@@ -7,7 +7,6 @@ var app = builder.Build();
 
 app.UseStaticFiles();
 
-
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 public record

@@ -1,0 +1,60 @@
+## Archivos de Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Salidas de compilación
+bin/
+obj/
+[Bb]uild/
+[Bb]uild[Ll]og.*
+
+## Paquetes y dependencias
+packages/
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## Archivos de publicación
+publish/
+*.Publish.xml
+
+## Archivos temporales y de sistema
+*.tmp
+*.log
+*.dbmdl
+*.bak
+*.cache
+*.pdb
+
+## Archivos de configuración de usuario
+*.userprefs
+*.vspscc
+*.vssscc
+
+## Archivos de IIS Express
+.vs/
+*.vspscc
+*.vssscc
+
+## Archivos de Rider
+.idea/
+*.sln.iml
+
+## Otros
+_ReSharper*/
+*.DotSettings.user
+*.dotCover
+TestResults/
+*.TestResults
+*.VisualState.xml
+*.pidb
+*.svclog
+*.scc
+
+# Archivos de configuración de entorno
+.env
