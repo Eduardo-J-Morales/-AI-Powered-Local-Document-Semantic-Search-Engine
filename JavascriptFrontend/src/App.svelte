@@ -19,6 +19,20 @@
 		documents = await res.json();
 	}
 
+	async function uploadDocument() {
+		if (!selectedFile) return;
+		isUploading = true;
+		cont formData = new FormData();
+		formData.append('file', selectedFile)
+
+		const res = await fetch('/api/documents/upload', {
+			method: 'POST',
+			body: formData
+		});
+		isUploading = false
+		selectedFile = null
+		await fetchDocuments
+	}
 
 </script>
 <main>
