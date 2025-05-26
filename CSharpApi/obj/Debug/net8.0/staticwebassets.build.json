@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8IfWTu1iKOlX0CvoJFyg27C2FalMPZ5+XVP0XJNGdqM=",
+  "Hash": "222SW8FhJyWlWFvV1vvlqjAht7UUpB8ODd+iDIfXE7Y=",
   "Source": "CSharpApi",
   "BasePath": "_content/CSharpApi",
   "Mode": "Default",
@@ -10,30 +10,10 @@
     {
       "Name": "CSharpApi/wwwroot",
       "Source": "CSharpApi",
-      "ContentRoot": "/root/Desktop-Document-Tagging-Utility/CSharpApi/wwwroot/",
+      "ContentRoot": "/mnt/c/Users/Eduardo/source/repos/Eduardo-J-Morales/Desktop-Document-Tagging-Utility/CSharpApi/wwwroot/",
       "BasePath": "_content/CSharpApi",
       "Pattern": "**"
     }
   ],
-  "Assets": [
-    {
-      "Identity": "/root/Desktop-Document-Tagging-Utility/CSharpApi/wwwroot/index.html",
-      "SourceId": "CSharpApi",
-      "SourceType": "Discovered",
-      "ContentRoot": "/root/Desktop-Document-Tagging-Utility/CSharpApi/wwwroot/",
-      "BasePath": "_content/CSharpApi",
-      "RelativePath": "index.html",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/index.html"
-    }
-  ]
+  "Assets": []
 }

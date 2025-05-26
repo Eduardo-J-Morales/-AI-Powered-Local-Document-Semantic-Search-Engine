@@ -1,5 +1,5 @@
-using System.Data;
 using Npgsql;
+using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +9,30 @@ app.UseStaticFiles();
 
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-public record
+app.MapGet("/api/files", async () =>
+    {
+        var result = new List<FileMetadataDto>();
+
+        using var conn = new NpgsqlConnection(connectionString);
+        await conn.OpenAsync();
+
+        using var cmd = new NpgsqlCommand("SELECT filename, content_type, size FROM file_metadata", conn);
+        using var reader = await cmd.ExecuteReaderAsync();
+
+        while (await reader.ReadAsync())
+        {
+            result.Add(new FileMetadataDto(
+                    reader.GetString(0),
+                    reader.IsDBNull(1) ? null : reader.GetString(1),
+                    reader.GetInt64(2)
+                    ));
+        }
+        return Results.Ok(result);
+    }
+); 
 
 app.MapGet("/", () => " Hellow world");
 
 app.Run();
+
+public record FileMetadataDto(string Filename, string ContentType, long Size);
