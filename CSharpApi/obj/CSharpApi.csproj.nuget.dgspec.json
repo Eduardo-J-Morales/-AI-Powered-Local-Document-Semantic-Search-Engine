@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/root/Desktop-Document-Tagging-Utility/CSharpApi/CSharpApi.csproj": {}
+    "/mnt/c/Users/Eduardo/source/repos/Eduardo-J-Morales/Desktop-Document-Tagging-Utility/CSharpApi/CSharpApi.csproj": {}
   },
   "projects": {
-    "/root/Desktop-Document-Tagging-Utility/CSharpApi/CSharpApi.csproj": {
+    "/mnt/c/Users/Eduardo/source/repos/Eduardo-J-Morales/Desktop-Document-Tagging-Utility/CSharpApi/CSharpApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/root/Desktop-Document-Tagging-Utility/CSharpApi/CSharpApi.csproj",
+        "projectUniqueName": "/mnt/c/Users/Eduardo/source/repos/Eduardo-J-Morales/Desktop-Document-Tagging-Utility/CSharpApi/CSharpApi.csproj",
         "projectName": "CSharpApi",
-        "projectPath": "/root/Desktop-Document-Tagging-Utility/CSharpApi/CSharpApi.csproj",
+        "projectPath": "/mnt/c/Users/Eduardo/source/repos/Eduardo-J-Morales/Desktop-Document-Tagging-Utility/CSharpApi/CSharpApi.csproj",
         "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/root/Desktop-Document-Tagging-Utility/CSharpApi/obj/",
+        "outputPath": "/mnt/c/Users/Eduardo/source/repos/Eduardo-J-Morales/Desktop-Document-Tagging-Utility/CSharpApi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/root/.nuget/NuGet/NuGet.Config"
@@ -37,6 +37,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Npgsql": {
+              "target": "Package",
+              "version": "[9.0.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

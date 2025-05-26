@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "yeGGQASgC/5JCxSzf/CoxZXuSwVBokqiXolRgY293qZQkYml9kOqE2xWAhQbEa0p7c6RCxlHxuHOcia7d/2Vyw==",
+  "dgSpecHash": "gAoVs2x7714ojA0cpZfdmD+Fuaj6Co4S7b35xfdnog24NvoaKBWGRtWR7gTpHQ28AVXMoNj+nEIGRC9MkVBwJw==",
   "success": true,
-  "projectFilePath": "/root/Desktop-Document-Tagging-Utility/CSharpApi/CSharpApi.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/mnt/c/Users/Eduardo/source/repos/Eduardo-J-Morales/Desktop-Document-Tagging-Utility/CSharpApi/CSharpApi.csproj",
+  "expectedPackageFiles": [
+    "/root/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.2/microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.2/microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
+    "/root/.nuget/packages/npgsql/9.0.3/npgsql.9.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
