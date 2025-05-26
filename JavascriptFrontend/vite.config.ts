@@ -6,6 +6,6 @@ export default defineConfig({
     plugins: [svelte()],
 
     build: {
-        outDir: '../CSharpApi/wwwroot/svelte'
+        outDir: '../CSharpApi/wwwroot/'
     }
 })
