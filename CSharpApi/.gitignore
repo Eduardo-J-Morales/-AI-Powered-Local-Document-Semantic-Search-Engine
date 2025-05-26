@@ -58,4 +58,4 @@ TestResults/
 *.scc
 
 # Archivos de configuración de entorno
-.env
+.env.vs/
