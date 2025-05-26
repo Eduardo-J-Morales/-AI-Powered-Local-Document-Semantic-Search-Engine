@@ -9,7 +9,7 @@ app.UseStaticFiles();
 
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-app.MapGet("/api/files", async () =>
+app.MapGet("/api/documents", async () =>
     {
         var result = new List<FileMetadataDto>();
 
