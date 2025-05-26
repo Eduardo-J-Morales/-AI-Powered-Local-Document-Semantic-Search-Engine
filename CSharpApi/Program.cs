@@ -32,7 +32,7 @@ app.MapGet("/api/documents", async () =>
 ); 
 
 
-app.MapPost("/api/files", async (FileMetadataDto dto) =>
+app.MapPost("/api/documents/upload", async (FileMetadataDto dto) =>
     {
           using var conn = new NpgsqlConnection(connectionString);
             await conn.OpenAsync();
