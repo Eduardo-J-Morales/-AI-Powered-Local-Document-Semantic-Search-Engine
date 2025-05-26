@@ -9,7 +9,6 @@
 	let aiSuggestedTags: string[] = [];
 	let userTags: string[] = [];
 
-	// Fetch all documents on mount
 	onMount(async () => {
 		await fetchDocuments();
 	});
