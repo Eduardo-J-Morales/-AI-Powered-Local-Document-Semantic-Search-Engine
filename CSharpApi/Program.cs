@@ -31,6 +31,18 @@ app.MapGet("/api/files", async () =>
     }
 ); 
 
+
+app.MapPost("/api/files", async (FileMetadataDto dto) =>
+    {
+          using var conn = new NpgsqlConnection(connectionString);
+            await conn.OpenAsync();
+
+        using var cmd = new Npgsqlcommand("INSERT INTO file_metadata (filename, content_type, size) VALUES (@filename, @content_ type, @size)", conn);
+        cmd.Parameters.addWithValue("filename", dto.Filename);
+        cmd.Parameters.addWithValue("content_type", dto.ContentType ?? (object)DBNull.Value);
+        cmd.Parameters.addWithValue("size", dto.Size);
+    }
+);
 app.MapGet("/", () => " Hellow world");
 
 app.Run();
