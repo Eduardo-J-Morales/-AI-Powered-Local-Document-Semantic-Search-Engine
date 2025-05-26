@@ -1,9 +1,6 @@
-<script lang="ts">
+<script>
+	import
 </script>
-
 <main>
-	<h2>Svelte works</h2>
+	
 </main>
-
-<style>
-</style>
