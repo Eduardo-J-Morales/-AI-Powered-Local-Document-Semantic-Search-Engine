@@ -185,7 +185,7 @@
     ]
   },
   "packageFolders": {
-    "/root/.nuget/packages/": {}
+    "/home/duardo/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
@@ -193,11 +193,11 @@
       "projectUniqueName": "/mnt/c/Users/Eduardo/source/repos/Eduardo-J-Morales/Desktop-Document-Tagging-Utility/CSharpApi/CSharpApi.csproj",
       "projectName": "CSharpApi",
       "projectPath": "/mnt/c/Users/Eduardo/source/repos/Eduardo-J-Morales/Desktop-Document-Tagging-Utility/CSharpApi/CSharpApi.csproj",
-      "packagesPath": "/root/.nuget/packages/",
+      "packagesPath": "/home/duardo/.nuget/packages/",
       "outputPath": "/mnt/c/Users/Eduardo/source/repos/Eduardo-J-Morales/Desktop-Document-Tagging-Utility/CSharpApi/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/root/.nuget/NuGet/NuGet.Config"
+        "/home/duardo/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
