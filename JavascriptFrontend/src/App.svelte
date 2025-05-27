@@ -1,42 +1,63 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-
+	let filesInfo: typeof fileInfo[] = []
+	
 	onMount(async () => {
-	try {
-		const response = await fetch('http://localhost:5191/api/documents');
+		try {
+			const response = await fetch('http://localhost:5191/api/documents');
+
+			if (!response.ok) throw Error("Connection error with the api");
+
+			const data = await response.json();
 			
-		if (!response.ok) throw Error("Connection error with the api");
-		
-		const data = await response.json();
-		console.log(data);
-	} catch (e) {
-		console.log(e);
-	}
+			filesInfo = [...data]
+		} catch (e) {
+			console.log(e);
+		}
 	})
 
 	let selectedFile: File | null = null
+	
 	let fileInfo = {
-		name: '',
-		content_type: '',
-		size: 0,
-		route: ''
+	name: '',
+	content_type: '',
+	size: 0,
+	route: ''
 	}
 
-	let filesInfo: typeof fileInfo[] = []
+	async function postFileMetadata(metadata) {
+		try {
+			const response = await fetch('http://localhost:5191/api/documents/upload', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(metadata)
+			});
+			if (!response.ok) {
+				const error = await response.json();
+				console.error('API error:', error);
+			}
+
+
+		} catch (e) {
+			console.error('Network error:', e);
+		}
+	}
 
 	function handleFileChange(event) {
-		const files = (event.target as HTMLInputElement).files;
-		if (files && files.length > 0) {
+	const files = (event.target as HTMLInputElement).files;
+	if (files && files.length > 0) {
 			selectedFile = files[0]
 			fileInfo = {
-				name : selectedFile.name,
-				content_type : selectedFile.type,
+				filename : selectedFile.name,
+				contentType : selectedFile.type,
 				size : selectedFile.size,
 				route : (selectedFile as any).webkitRelativePath || '(not available)'
 			}
 
 			filesInfo = [...filesInfo, { ...fileInfo }]
-
+			postFileMetadata(fileInfo)
 			// Optionally clear the file input visually (if using bind:this, not needed here)
 			event.target.value = null
 		}
@@ -60,10 +81,10 @@
 				<div class="file-card">
 					<div class="file-card-header">
 						<span class="file-index">#{idx + 1}</span>
-						<span class="file-name">{info.name}</span>
+						<span class="file-name">{info.filename}</span>
 					</div>
 					<div class="file-card-body">
-						<div><strong>Content Type:</strong> {info.content_type}</div>
+						<div><strong>Content Type:</strong> {info.contentType}</div>
 						<div><strong>Size:</strong> {info.size} bytes</div>
 						<div><strong>Route:</strong> {info.route}</div>
 					</div>
