@@ -3,8 +3,10 @@
 
 	onMount(async () => {
 	try {
-		const response = await fetch('/api/documents');
+		const response = await fetch('http://localhost:5191/api/documents');
+			
 		if (!response.ok) throw Error("Connection error with the api");
+		
 		const data = await response.json();
 		console.log(data);
 	} catch (e) {
