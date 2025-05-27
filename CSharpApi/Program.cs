@@ -3,9 +3,20 @@ using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 app.UseStaticFiles();
+app.UseCors();
 
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
