@@ -10,42 +10,77 @@ app.UseStaticFiles();
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 app.MapGet("/api/documents", async () =>
+{
+    try
     {
         var result = new List<FileMetadataDto>();
 
         using var conn = new NpgsqlConnection(connectionString);
         await conn.OpenAsync();
 
-        using var cmd = new NpgsqlCommand("SELECT filename, content_type, size FROM file_metadata", conn);
+        using var cmd = new NpgsqlCommand("SELECT filename, content_type, size, route FROM file_metadata", conn);
         using var reader = await cmd.ExecuteReaderAsync();
 
         while (await reader.ReadAsync())
         {
             result.Add(new FileMetadataDto(
-                    reader.GetString(0),
-                    reader.IsDBNull(1) ? null : reader.GetString(1),
-                    reader.GetInt64(2)
-                    ));
+                reader.GetString(0),
+                reader.IsDBNull(1) ? null : reader.GetString(1),
+                reader.GetInt64(2),
+                reader.IsDBNull(3) ? null : reader.GetString(3)
+            ));
         }
         return Results.Ok(result);
     }
-); 
-
+    catch (Exception ex)
+    {
+        return Results.Problem(
+            detail: ex.Message,
+            title: "Failed to fetch documents",
+            statusCode: 500,
+            extensions: new Dictionary<string, object?>
+            {
+                { "exceptionType", ex.GetType().Name },
+                { "stackTrace", ex.StackTrace }
+            }
+        );
+    }
+});
 
 app.MapPost("/api/documents/upload", async (FileMetadataDto dto) =>
+{
+    try
     {
-          using var conn = new NpgsqlConnection(connectionString);
-            await conn.OpenAsync();
+        using var conn = new NpgsqlConnection(connectionString);
+        await conn.OpenAsync();
 
-        using var cmd = new Npgsqlcommand("INSERT INTO file_metadata (filename, content_type, size, route) VALUES (@filename, @content_ type, @size, @route)", conn);
-        cmd.Parameters.addWithValue("filename", dto.Filename);
-        cmd.Parameters.addWithValue("content_type", dto.ContentType ?? (object)DBNull.Value);
-        cmd.Parameters.addWithValue("size", dto.Size);
-        cmd.Parameters.addWithValue(("route", dto.Route);
+        using var cmd = new NpgsqlCommand("INSERT INTO file_metadata (filename, content_type, size, route) VALUES (@filename, @content_type, @size, @route)", conn);
+        cmd.Parameters.AddWithValue("filename", dto.Filename);
+        cmd.Parameters.AddWithValue("content_type", dto.ContentType ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("size", dto.Size);
+        cmd.Parameters.AddWithValue("route", dto.Route ?? (object)DBNull.Value);
+
+        await cmd.ExecuteNonQueryAsync();
+
+        return Results.Ok(new { message = "File metadata uploaded successfully." });
     }
-);
+    catch (Exception ex)
+    {
+        return Results.Problem(
+            detail: ex.Message,
+            title: "Failed to upload document metadata",
+            statusCode: 500,
+            extensions: new Dictionary<string, object?>
+            {
+                { "exceptionType", ex.GetType().Name },
+                { "stackTrace", ex.StackTrace }
+            }
+        );
+    }
+});
+
 app.MapGet("/", () => " Hellow world");
 
 app.Run();
 
-public record FileMetadataDto(string Filename, string ContentType, long Size);
+public record FileMetadataDto(string Filename, string ContentType, long Size, string Route);
