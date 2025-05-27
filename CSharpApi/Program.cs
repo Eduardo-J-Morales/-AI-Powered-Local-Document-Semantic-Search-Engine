@@ -59,9 +59,6 @@ app.MapGet("/api/documents", async () =>
     }
 });
 
-
-
-
 app.MapPost("/api/documents/upload", async (FileMetadataDto dto) =>
 {
     try
@@ -94,13 +91,14 @@ app.MapPost("/api/documents/upload", async (FileMetadataDto dto) =>
     }
 });
 
-app.MapDelete('/api/documents/{filename}', async (string filename) => {
-    try
+app.MapDelete("/api/documents/delete/{filename}", async (string filename) => 
+{
+    try 
     {
         using var conn = new NpgsqlConnection(connectionString);
         await conn.OpenAsync();
 
-        using var cmd = newNpgslqCommand("DELETE FROM file_metadata WHERE filename = @filename");
+        using var cmd = new NpgsqlCommand("DELETE FROM file_metadata WHERE filename = @filename", conn);
         cmd.Parameters.AddWithValue("filename", filename);
 
         int affectedRows = await cmd.ExecuteNonQueryAsync();
@@ -117,17 +115,13 @@ app.MapDelete('/api/documents/{filename}', async (string filename) => {
     {
         return Results.Problem(
             detail: ex.Message,
-            title: "Failed to delte document",
+            title: "Failed to delete document",
             statusCode: 500,
             extensions: new Dictionary<string, object?> {
-                { "SeceptionType", ex.GetType().Name },
-                { "stackTrace", ex.StackTrace}
+                { "exceptionType", ex.GetType().Name },
+                { "stackTrace", ex.StackTrace }
             });
     }
 });
-
-app.MapGet("/", () => " Hellow world");
-
-app.Run();
 
 public record FileMetadataDto(string Filename, string ContentType, long Size, string Route);
