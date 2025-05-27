@@ -1,6 +1,17 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
+	onMount(async () => {
+	try {
+		const response = await fetch('/api/documents');
+		if (!response.ok) throw Error("Connection error with the api");
+		const data = await response.json();
+		console.log(data);
+	} catch (e) {
+		console.log(e);
+	}
+	})
+
 	let selectedFile: File | null = null
 	let fileInfo = {
 		name: '',
