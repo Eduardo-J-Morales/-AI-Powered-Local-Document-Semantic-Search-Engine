@@ -1,4 +1,4 @@
-<script lang="ts">
+﻿<script lang="ts">
 	import { onMount } from 'svelte';
 	let filesInfo: typeof fileInfo[] = []
 	
@@ -62,6 +62,10 @@
 			event.target.value = null
 		}
 	}
+
+	function deleteFile(file) {
+		document
+	}
 </script>
 
 <main>
@@ -87,6 +91,7 @@
 						<div><strong>Content Type:</strong> {info.contentType}</div>
 						<div><strong>Size:</strong> {info.size} bytes</div>
 						<div><strong>Route:</strong> {info.route}</div>
+						<button on:click={deleteFile(info.filename}>❌</button>
 					</div>
 				</div>
 			{/each}
