@@ -101,10 +101,17 @@ app.MapDelete('/api/documents/{filename}', async (string filename) => {
         await conn.OpenAsync();
 
         using var cmd = newNpgslqCommand("DELETE FROM file_metadata WHERE filename = @filename");
-        cmd.Parameters.AddWithValue("filename", filename)
+        cmd.Parameters.AddWithValue("filename", filename);
 
-        int affected
-        cm
+        int affectedRows = await cmd.ExecuteNonQueryAsync();
+
+        if (affectedRows == 0)
+        {
+            return Results.NotFound(new { message = $"No document found with filename '{filename}'." });
+        }
+
+        return Results.Ok(new { message = $"Document '{filename}' deleted successfully." });
+
     }
     catch (Exception ex)
     {
