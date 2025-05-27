@@ -3,6 +3,10 @@
 	let filesInfo: typeof fileInfo[] = []
 	
 	onMount(async () => {
+		await fechDocuments()
+	})
+
+	async function fetchDocuments() {
 		try {
 			const response = await fetch('http://localhost:5191/api/documents');
 
@@ -14,7 +18,7 @@
 		} catch (e) {
 			console.log(e);
 		}
-	})
+	}
 
 	let selectedFile: File | null = null
 	
@@ -36,7 +40,7 @@
 			});
 			if (!response.ok) {
 				const error = await response.json();
-				console.error('API error:', error);
+				console.error('API error:', error.message);
 			}
 
 
@@ -63,8 +67,19 @@
 		}
 	}
 
-	function deleteFile(file) {
-		console.log(file)
+	async function deleteFile(file) {
+		try {
+
+		const res = await fetch(`http://localhost:5191/api/documents/${file}`, { method: "DELETE" })
+				if (!response.ok) {
+					const error = await response.json();
+					console.error('API error:', error.message);
+				}
+		} catch(e) {
+			console.log(e)
+		}
+
+		await fetchDocuments()
 	}
 </script>
 
@@ -88,10 +103,10 @@
 						<span class="file-name">{info.filename}</span>
 					</div>
 					<div class="file-card-body">
+						<button on:click={deleteFile(info.filename)}>❌</button>
 						<div><strong>Content Type:</strong> {info.contentType}</div>
 						<div><strong>Size:</strong> {info.size} bytes</div>
 						<div><strong>Route:</strong> {info.route}</div>
-						<button on:click={deleteFile(info.filename}>❌</button>
 					</div>
 				</div>
 			{/each}
