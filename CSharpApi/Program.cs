@@ -19,7 +19,9 @@ var app = builder.Build();
 app.UseStaticFiles();
 app.UseCors();
 
-string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+if (connectionString is null)
+    throw new InvalidOperationException("No se encontró la cadena de conexión 'DefaultConnection'.");
 
 app.MapGet("/api/documents", async () =>
 {
@@ -39,7 +41,7 @@ app.MapGet("/api/documents", async () =>
                 reader.GetString(0),
                 reader.IsDBNull(1) ? null : reader.GetString(1),
                 reader.GetInt64(2),
-                reader.IsDBNull(3) ? null : reader.GetString(3)
+                reader.GetString(3)
             ));
         }
         return Results.Ok(result);
@@ -70,7 +72,7 @@ app.MapPost("/api/documents/upload", async (FileMetadataDto dto) =>
         cmd.Parameters.AddWithValue("filename", dto.Filename);
         cmd.Parameters.AddWithValue("content_type", dto.ContentType ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("size", dto.Size);
-        cmd.Parameters.AddWithValue("route", dto.Route ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("route", dto.Route);
 
         await cmd.ExecuteNonQueryAsync();
 
@@ -91,7 +93,7 @@ app.MapPost("/api/documents/upload", async (FileMetadataDto dto) =>
     }
 });
 
-app.MapDelete("/api/documents/delete/{filename}", async (string filename) => 
+app.MapDelete("/api/documents/{filename}", async (string filename) => 
 {
     try 
     {
@@ -124,4 +126,6 @@ app.MapDelete("/api/documents/delete/{filename}", async (string filename) =>
     }
 });
 
-public record FileMetadataDto(string Filename, string ContentType, long Size, string Route);
+app.Run();
+
+public record FileMetadataDto(string Filename, string? ContentType, long Size, string Route);
