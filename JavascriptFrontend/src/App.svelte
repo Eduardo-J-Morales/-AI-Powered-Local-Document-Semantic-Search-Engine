@@ -64,7 +64,7 @@
 	}
 
 	function deleteFile(file) {
-		document
+		console.log(file)
 	}
 </script>
 
