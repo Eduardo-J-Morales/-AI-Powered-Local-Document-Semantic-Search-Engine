@@ -173,129 +173,232 @@
 </main>
 
 <style>
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1e40af;
+    --bg: #f4f6fb;
+    --card-bg: #fff;
+    --border: #e5e7eb;
+    --shadow: 0 4px 24px rgba(30, 64, 175, 0.08);
+    --radius: 14px;
+    --tag-bg: #e0e7ff;
+    --tag-color: #3730a3;
+    --danger: #ef4444;
+    --danger-bg: #fee2e2;
+    --modal-bg: #fff;
+    --modal-shadow: 0 8px 32px rgba(30, 41, 59, 0.18);
+}
+
+body {
+    background: var(--bg);
+}
+
 main {
-	max-width: 800px;
-	margin: 2rem auto;
-	padding: 2rem;
-	background: #fff;
-	border-radius: 8px;
-	box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-	font-family: system-ui, sans-serif;
+    max-width: 900px;
+    margin: 2.5rem auto;
+    padding: 2.5rem 2rem;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+h2, h3, h4 {
+    font-weight: 700;
+    color: var(--primary-dark);
+    letter-spacing: -0.5px;
+    margin-bottom: 1rem;
 }
 
 section {
-	margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 .hidden-file-input {
-	display: none;
+    display: none;
 }
 
 .file-upload-label {
-	display: inline-block;
-	padding: 0.5rem 1.5rem;
-	background: #007acc;
-	color: #fff;
-	border-radius: 4px;
-	cursor: pointer;
-	font-weight: bold;
-	transition: background 0.2s;
+    display: inline-block;
+    padding: 0.7rem 2rem;
+    background: var(--primary);
+    color: #fff;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.08rem;
+    letter-spacing: 0.02em;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+    transition: background 0.18s, box-shadow 0.18s, transform 0.1s;
+    border: none;
 }
 .file-upload-label:hover {
-	background: #005fa3;
+    background: var(--primary-dark);
+    box-shadow: 0 4px 16px rgba(37,99,235,0.12);
+    transform: translateY(-2px) scale(1.03);
 }
 
 .card-container {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
 }
 
 .file-card {
-	background: #f8fafd;
-	border: 1px solid #e0e6ed;
-	border-radius: 8px;
-	box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-	padding: 1rem 1.5rem;
-	min-width: 220px;
-	max-width: 300px;
-	flex: 1 1 220px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+    background: var(--card-bg);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.3rem 1.7rem;
+    min-width: 240px;
+    max-width: 320px;
+    flex: 1 1 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: box-shadow 0.18s, border 0.18s, transform 0.12s;
+}
+.file-card:hover {
+    box-shadow: 0 8px 32px rgba(37,99,235,0.12);
+    border-color: var(--primary);
+    transform: translateY(-2px) scale(1.02);
 }
 
 .file-card-header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.7rem;
 }
 
 .file-card-actions {
-	display: flex;
-	gap: 0.5rem;
+    display: flex;
+	flex-direction: column;
+    gap: 0.7rem;
 }
 
 .icon-btn {
-	background: none;
-	border: none;
-	cursor: pointer;
-	font-size: 1.2rem;
-	padding: 0 0.3rem;
-	transition: color 0.2s;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.3rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    transition: background 0.16s, color 0.16s, transform 0.1s;
 }
 .icon-btn:hover {
-	color: #007acc;
+    background: var(--tag-bg);
+    color: var(--primary-dark);
+    transform: scale(1.15);
+}
+.icon-btn:last-child:hover {
+    background: var(--danger-bg);
+    color: var(--danger);
 }
 
 .file-name {
-	font-weight: bold;
-	font-size: 1.1rem;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	max-width: 170px;
+	margin-top: -50px;
+    font-weight: 600;
+    font-size: 1.08rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 170px;
+    color: var(--primary-dark);
 }
 
 .file-card-body > div {
-	margin-bottom: 0.25rem;
-	font-size: 0.97rem;
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+    color: #374151;
+}
+
+.file-card-body {
+	margin-top: -50px;
 }
 
 .tag {
-	display: inline-block;
-	background: #e0e6ed;
-	color: #333;
-	border-radius: 3px;
-	padding: 2px 8px;
-	margin-right: 4px;
-	font-size: 0.9em;
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--tag-color);
+    border-radius: 6px;
+    padding: 3px 10px;
+    margin-right: 6px;
+    font-size: 0.93em;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    margin-bottom: 2px;
 }
 
 .modal-backdrop {
-	position: fixed;
-	top: 0; left: 0; right: 0; bottom: 0;
-	background: rgba(0,0,0,0.3);
-	z-index: 10;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(30,41,59,0.18);
+    z-index: 10;
+    backdrop-filter: blur(2px);
 }
 
 .modal {
-	position: fixed;
-	top: 50%; left: 50%;
-	transform: translate(-50%, -50%);
-	background: #fff;
-	padding: 2rem;
-	border-radius: 8px;
-	box-shadow: 0 2px 16px rgba(0,0,0,0.2);
-	z-index: 11;
-	min-width: 300px;
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--modal-bg);
+    padding: 2.2rem 2.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--modal-shadow);
+    z-index: 11;
+    min-width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.modal h4 {
+    margin-bottom: 1.1rem;
+    font-size: 1.18rem;
+}
+
+.modal input[type="text"] {
+    padding: 0.7rem 1rem;
+    border-radius: 7px;
+    border: 1.5px solid var(--border);
+    font-size: 1.05rem;
+    margin-bottom: 1.2rem;
+    transition: border 0.16s;
+}
+.modal input[type="text"]:focus {
+    border-color: var(--primary);
+    outline: none;
 }
 
 .modal-actions {
-	margin-top: 1rem;
-	display: flex;
-	gap: 1rem;
-	justify-content: flex-end;
+    margin-top: 0.5rem;
+    display: flex;
+    gap: 1.2rem;
+    justify-content: flex-end;
+}
+
+.modal-actions button {
+    padding: 0.6rem 1.5rem;
+    border-radius: 7px;
+    border: none;
+    font-weight: 600;
+    font-size: 1.01rem;
+    cursor: pointer;
+    transition: background 0.16s, color 0.16s, transform 0.1s;
+    background: var(--primary);
+    color: #fff;
+}
+.modal-actions button:hover {
+    background: var(--primary-dark);
+    transform: scale(1.04);
+}
+.modal-actions button:last-child {
+    background: #e5e7eb;
+    color: #374151;
+}
+.modal-actions button:last-child:hover {
+    background: #d1d5db;
+    color: #1e293b;
 }
 </style>
