@@ -313,9 +313,10 @@ section {
     color: #374151;
 }
 
-.file-card-body {
-	margin-top: -50px;
+.file-card-body:is(:nth-child(1), :nth-child(2), :nth-child(3)) {
+	margin-top: -40px ;
 }
+
 
 .tag {
     display: inline-block;
