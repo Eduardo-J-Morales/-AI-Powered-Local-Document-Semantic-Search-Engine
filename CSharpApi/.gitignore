@@ -6,9 +6,9 @@
 *.userosscache
 *.sln.docstates
 
-## Salidas de compilación
-bin/
-obj/
+## Salidas de compilaciï¿½n
+./bin/
+./obj/
 [Bb]uild/
 [Bb]uild[Ll]og.*
 
@@ -20,7 +20,7 @@ project.lock.json
 project.fragment.lock.json
 artifacts/
 
-## Archivos de publicación
+## Archivos de publicaciï¿½n
 publish/
 *.Publish.xml
 
@@ -32,7 +32,7 @@ publish/
 *.cache
 *.pdb
 
-## Archivos de configuración de usuario
+## Archivos de configuraciï¿½n de usuario
 *.userprefs
 *.vspscc
 *.vssscc
@@ -57,5 +57,5 @@ TestResults/
 *.svclog
 *.scc
 
-# Archivos de configuración de entorno
+# Archivos de configuraciï¿½n de entorno
 .env.vs/
