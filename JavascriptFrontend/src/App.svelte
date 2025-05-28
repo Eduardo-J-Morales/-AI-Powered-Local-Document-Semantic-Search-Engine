@@ -3,7 +3,7 @@
 	let filesInfo: typeof fileInfo[] = []
 	
 	onMount(async () => {
-		await fechDocuments()
+		await fetchDocuments()
 	})
 
 	async function fetchDocuments() {
@@ -71,7 +71,7 @@
 		try {
 
 		const res = await fetch(`http://localhost:5191/api/documents/${file}`, { method: "DELETE" })
-				if (!response.ok) {
+				if (!res.ok) {
 					const error = await response.json();
 					console.error('API error:', error.message);
 				}
@@ -85,7 +85,7 @@
 
 <main>
 	<section>
-		<h2>Upload Document</h2>
+		<h2>Upload File</h2>
 		<input type="file" id="file-upload" class="hidden-file-input" on:change={handleFileChange} />
 		<label for="file-upload" class="file-upload-label">
 			Select File
@@ -96,14 +96,13 @@
 	<section>
 		<h3>Files</h3>
 		<div class="card-container">
-			{#each filesInfo as info, idx}
+			{#each filesInfo as info}
 				<div class="file-card">
 					<div class="file-card-header">
-						<span class="file-index">#{idx + 1}</span>
 						<span class="file-name">{info.filename}</span>
 					</div>
 					<div class="file-card-body">
-						<button on:click={deleteFile(info.filename)}>❌</button>
+						<button on:click={() => deleteFile(info.filename)}>❌</button>
 						<div><strong>Content Type:</strong> {info.contentType}</div>
 						<div><strong>Size:</strong> {info.size} bytes</div>
 						<div><strong>Route:</strong> {info.route}</div>
@@ -174,18 +173,6 @@ section {
 	margin-bottom: 0.5rem;
 }
 
-.file-index {
-	background: #007acc;
-	color: #fff;
-	border-radius: 50%;
-	width: 1.5rem;
-	height: 1.5rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 1rem;
-	margin-right: 0.75rem;
-}
 
 .file-name {
 	font-weight: bold;
