@@ -9,24 +9,23 @@
 	async function fetchDocuments() {
 		try {
 			const response = await fetch('http://localhost:5191/api/documents');
-
 			if (!response.ok) throw Error("Connection error with the api");
-
 			const data = await response.json();
-			
-			filesInfo = [...data]
+			// Inicializa el array de tags si no existe
+			filesInfo = data.map(f => ({ ...f, tags: f.tags ?? [] }));
 		} catch (e) {
 			console.log(e);
 		}
 	}
 
 	let selectedFile: File | null = null
-	
+
 	let fileInfo = {
-	name: '',
-	content_type: '',
-	size: 0,
-	route: ''
+		filename: '',
+		contentType: '',
+		size: 0,
+		route: '',
+		tags: [] as string[]
 	}
 
 	async function postFileMetadata(metadata) {
@@ -42,44 +41,76 @@
 				const error = await response.json();
 				console.error('API error:', error.message);
 			}
-
-
 		} catch (e) {
 			console.error('Network error:', e);
 		}
 	}
 
 	function handleFileChange(event) {
-	const files = (event.target as HTMLInputElement).files;
-	if (files && files.length > 0) {
+		const files = (event.target as HTMLInputElement).files;
+		if (files && files.length > 0) {
 			selectedFile = files[0]
 			fileInfo = {
-				filename : selectedFile.name,
-				contentType : selectedFile.type,
-				size : selectedFile.size,
-				route : (selectedFile as any).webkitRelativePath || '(not available)'
+				filename: selectedFile.name,
+				contentType: selectedFile.type,
+				size: selectedFile.size,
+				route: (selectedFile as any).webkitRelativePath || '(not available)',
+				tags: []
 			}
-
 			filesInfo = [...filesInfo, { ...fileInfo }]
 			postFileMetadata(fileInfo)
-			// Optionally clear the file input visually (if using bind:this, not needed here)
 			event.target.value = null
 		}
 	}
 
 	async function deleteFile(file) {
 		try {
-
-		const res = await fetch(`http://localhost:5191/api/documents/${file}`, { method: "DELETE" })
-				if (!res.ok) {
-					const error = await response.json();
-					console.error('API error:', error.message);
-				}
-		} catch(e) {
+			const res = await fetch(`http://localhost:5191/api/documents/${file}`, { method: "DELETE" })
+			if (!res.ok) {
+				const error = await response.json();
+				console.error('API error:', error.message);
+			}
+		} catch (e) {
 			console.log(e)
 		}
-
 		await fetchDocuments()
+	}
+
+	// --- Modal y lógica de tags ---
+	let showModal = false;
+	let currentFileIdx: number | null = null;
+	let tagInput = '';
+
+	function openTagModal(idx: number) {
+		currentFileIdx = idx;
+		tagInput = '';
+		showModal = true;
+	}
+
+	function closeModal() {
+		showModal = false;
+		currentFileIdx = null;
+		tagInput = '';
+	}
+
+	async function addTag() {
+		if (currentFileIdx === null || !tagInput.trim()) return;
+		const tags = tagInput.split(',').map(t => t.trim()).filter(Boolean);
+		// Actualiza el array local
+		filesInfo[currentFileIdx].tags = [...(filesInfo[currentFileIdx].tags || []), ...tags];
+		// Envía cada tag al endpoint
+		for (const tag of tags) {
+			await fetch('http://localhost:5191/api/documents/tag', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					filename: filesInfo[currentFileIdx].filename,
+					tag
+				})
+			});
+		}
+		tagInput = '';
+		closeModal();
 	}
 </script>
 
@@ -96,21 +127,42 @@
 	<section>
 		<h3>Files</h3>
 		<div class="card-container">
-			{#each filesInfo as info}
+			{#each filesInfo as info, idx}
 				<div class="file-card">
 					<div class="file-card-header">
 						<span class="file-name">{info.filename}</span>
 					</div>
 					<div class="file-card-body">
 						<button on:click={() => deleteFile(info.filename)}>❌</button>
+						<button on:click={() => openTagModal(idx)}>🏷️ Tags</button>
 						<div><strong>Content Type:</strong> {info.contentType}</div>
 						<div><strong>Size:</strong> {info.size} bytes</div>
 						<div><strong>Route:</strong> {info.route}</div>
+						{#if info.tags && info.tags.length > 0}
+							<div>
+								<strong>Tags:</strong>
+								{#each info.tags as tag}
+									<span class="tag">{tag}</span>
+								{/each}
+							</div>
+						{/if}
 					</div>
 				</div>
 			{/each}
 		</div>
 	</section>
+	{/if}
+
+	{#if showModal}
+		<div class="modal-backdrop" on:click={closeModal}></div>
+		<div class="modal">
+			<h4>Add tags (separate with commas)</h4>
+			<input type="text" bind:value={tagInput} placeholder="tag1, tag2, tag3" on:keydown={(e) => e.stopPropagation()} />
+			<div class="modal-actions">
+				<button on:click={addTag}>Add</button>
+				<button on:click={closeModal}>Cancel</button>
+			</div>
+		</div>
 	{/if}
 </main>
 
@@ -173,7 +225,6 @@ section {
 	margin-bottom: 0.5rem;
 }
 
-
 .file-name {
 	font-weight: bold;
 	font-size: 1.1rem;
@@ -186,5 +237,41 @@ section {
 .file-card-body > div {
 	margin-bottom: 0.25rem;
 	font-size: 0.97rem;
+}
+
+.tag {
+	display: inline-block;
+	background: #e0e6ed;
+	color: #333;
+	border-radius: 3px;
+	padding: 2px 8px;
+	margin-right: 4px;
+	font-size: 0.9em;
+}
+
+.modal-backdrop {
+	position: fixed;
+	top: 0; left: 0; right: 0; bottom: 0;
+	background: rgba(0,0,0,0.3);
+	z-index: 10;
+}
+
+.modal {
+	position: fixed;
+	top: 50%; left: 50%;
+	transform: translate(-50%, -50%);
+	background: #fff;
+	padding: 2rem;
+	border-radius: 8px;
+	box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+	z-index: 11;
+	min-width: 300px;
+}
+
+.modal-actions {
+	margin-top: 1rem;
+	display: flex;
+	gap: 1rem;
+	justify-content: flex-end;
 }
 </style>
