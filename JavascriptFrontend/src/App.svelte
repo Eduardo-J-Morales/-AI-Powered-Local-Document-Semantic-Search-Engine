@@ -131,10 +131,12 @@
 				<div class="file-card">
 					<div class="file-card-header">
 						<span class="file-name">{info.filename}</span>
+						<div class="file-card-actions">
+							<button class="icon-btn" on:click={() => deleteFile(info.filename)}>❌</button>
+							<button class="icon-btn" on:click={() => openTagModal(idx)}>🏷️</button>
+						</div>
 					</div>
 					<div class="file-card-body">
-						<button on:click={() => deleteFile(info.filename)}>❌</button>
-						<button on:click={() => openTagModal(idx)}>🏷️ Tags</button>
 						<div><strong>Content Type:</strong> {info.contentType}</div>
 						<div><strong>Size:</strong> {info.size} bytes</div>
 						<div><strong>Route:</strong> {info.route}</div>
@@ -222,7 +224,25 @@ section {
 .file-card-header {
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	margin-bottom: 0.5rem;
+}
+
+.file-card-actions {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.icon-btn {
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 1.2rem;
+	padding: 0 0.3rem;
+	transition: color 0.2s;
+}
+.icon-btn:hover {
+	color: #007acc;
 }
 
 .file-name {
