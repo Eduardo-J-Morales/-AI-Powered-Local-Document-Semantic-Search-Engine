@@ -32,7 +32,7 @@ app.MapGet("/api/documents", async () =>
         using var conn = new NpgsqlConnection(connectionString);
         await conn.OpenAsync();
 
-        using var cmd = new NpgsqlCommand("SELECT filename, content_type, size, route FROM file_metadata", conn);
+        using var cmd = new NpgsqlCommand("SELECT filename, contenttype, size, route FROM file_metadata", conn);
         using var reader = await cmd.ExecuteReaderAsync();
 
         while (await reader.ReadAsync())
@@ -68,9 +68,9 @@ app.MapPost("/api/documents/upload", async (FileMetadataDto dto) =>
         using var conn = new NpgsqlConnection(connectionString);
         await conn.OpenAsync();
 
-        using var cmd = new NpgsqlCommand("INSERT INTO file_metadata(filename, content_type, size, route) VALUES (@filename, @content_type, @size, @route)", conn);
+        using var cmd = new NpgsqlCommand("INSERT INTO file_metadata(filename, contenttype, size, route) VALUES (@filename, @content_type, @size, @route)", conn);
         cmd.Parameters.AddWithValue("filename", dto.Filename);
-        cmd.Parameters.AddWithValue("content_type", dto.ContentType ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("content_type", dto.ContentType);
         cmd.Parameters.AddWithValue("size", dto.Size);
         cmd.Parameters.AddWithValue("route", dto.Route);
 
@@ -128,4 +128,4 @@ app.MapDelete("/api/documents/{filename}", async (string filename) =>
 
 app.Run();
 
-public record FileMetadataDto(string Filename, string? ContentType, long Size, string Route);
+public record FileMetadataDto(string Filename, string ContentType, long Size, string Route);
