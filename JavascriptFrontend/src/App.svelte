@@ -142,7 +142,7 @@
 					</div>
 					<div class="file-card-body">
 						<div><strong>Content Type:</strong> {info.contentType}</div>
-						<div><strong>Size:</strong> {info.size} bytes</div>
+						<div><strong>Size:</strong> {formatSize(info.size)}</div>
 						<div><strong>Route:</strong> {info.route}</div>
 						{#if info.tags && info.tags.length > 0}
 							<div>
