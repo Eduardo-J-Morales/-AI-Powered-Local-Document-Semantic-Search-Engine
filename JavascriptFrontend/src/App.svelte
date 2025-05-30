@@ -48,10 +48,19 @@
 
 	function handleFileChange(event) {
 		const files = (event.target as HTMLInputElement).files;
+	
 		if (files && files.length > 0) {
 			selectedFile = files[0]
+			let amount = 0
+
+			for(let i = 0; i < filesInfo.length; i++) {		
+				if(filesInfo[i].filename.includes(selectedFile.name)) {
+					amount++
+				} 
+			} 
+
 			fileInfo = {
-				filename: selectedFile.name,
+				filename: amount == 0 ? selectedFile.name : selectedFile.name + ` (${amount})`,
 				contentType: selectedFile.type,
 				size: selectedFile.size,
 				route: (selectedFile as any).webkitRelativePath || '(not available)',
@@ -160,7 +169,7 @@
 	{/if}
 
 	{#if showModal}
-		<div class="modal-backdrop" on:click={closeModal}></div>
+		<div class="modal-backdrop" on:click={closeModal} tabindex="0" role="button"></div>
 		<div class="modal">
 			<h4>Add tags (separate with commas)</h4>
 			<input type="text" bind:value={tagInput} placeholder="tag1, tag2, tag3" on:keydown={(e) => e.stopPropagation()} />
@@ -189,9 +198,6 @@
     --modal-shadow: 0 8px 32px rgba(30, 41, 59, 0.18);
 }
 
-body {
-    background: var(--bg);
-}
 
 main {
     max-width: 900px;
@@ -303,7 +309,7 @@ section {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    max-width: 170px;
+    max-width: fit-content;
     color: var(--primary-dark);
 }
 
