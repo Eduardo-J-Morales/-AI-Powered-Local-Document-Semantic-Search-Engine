@@ -1,6 +1,4 @@
 using Npgsql;
-using System.Data;
-using System.Security.Cryptography;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +19,7 @@ app.UseCors();
 
 string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 if (connectionString is null)
-    throw new InvalidOperationException("No se encontró la cadena de conexión 'DefaultConnection'.");
+    throw new InvalidOperationException("'DefaultConnection' was not found.");
 
 app.MapGet("/api/documents", async () =>
 {
