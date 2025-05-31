@@ -1,19 +1,11 @@
 {
   "Version": 1,
-  "Hash": "222SW8FhJyWlWFvV1vvlqjAht7UUpB8ODd+iDIfXE7Y=",
+  "Hash": "8CBy0zaR1w40O1WIg/cF/mdhOe/ZQVZN5emD/yc3omk=",
   "Source": "CSharpApi",
   "BasePath": "_content/CSharpApi",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [
-    {
-      "Name": "CSharpApi/wwwroot",
-      "Source": "CSharpApi",
-      "ContentRoot": "/mnt/c/Users/Eduardo/source/repos/Eduardo-J-Morales/Desktop-Document-Tagging-Utility/CSharpApi/wwwroot/",
-      "BasePath": "_content/CSharpApi",
-      "Pattern": "**"
-    }
-  ],
+  "DiscoveryPatterns": [],
   "Assets": []
 }

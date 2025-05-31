@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/mnt/c/Users/Eduardo/source/repos/Eduardo-J-Morales/Desktop-Document-Tagging-Utility/CSharpApi/CSharpApi.csproj": {}
+    "/home/duardo/Desktop-Document-Tagging-Utility/CSharpApi/CSharpApi.csproj": {}
   },
   "projects": {
-    "/mnt/c/Users/Eduardo/source/repos/Eduardo-J-Morales/Desktop-Document-Tagging-Utility/CSharpApi/CSharpApi.csproj": {
+    "/home/duardo/Desktop-Document-Tagging-Utility/CSharpApi/CSharpApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/mnt/c/Users/Eduardo/source/repos/Eduardo-J-Morales/Desktop-Document-Tagging-Utility/CSharpApi/CSharpApi.csproj",
+        "projectUniqueName": "/home/duardo/Desktop-Document-Tagging-Utility/CSharpApi/CSharpApi.csproj",
         "projectName": "CSharpApi",
-        "projectPath": "/mnt/c/Users/Eduardo/source/repos/Eduardo-J-Morales/Desktop-Document-Tagging-Utility/CSharpApi/CSharpApi.csproj",
+        "projectPath": "/home/duardo/Desktop-Document-Tagging-Utility/CSharpApi/CSharpApi.csproj",
         "packagesPath": "/home/duardo/.nuget/packages/",
-        "outputPath": "/mnt/c/Users/Eduardo/source/repos/Eduardo-J-Morales/Desktop-Document-Tagging-Utility/CSharpApi/obj/",
+        "outputPath": "/home/duardo/Desktop-Document-Tagging-Utility/CSharpApi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/duardo/.nuget/NuGet/NuGet.Config"

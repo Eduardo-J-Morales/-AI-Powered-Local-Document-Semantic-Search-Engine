@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CUyzmUCIE1Qz0ThJqBCIUJYVP+5CzXKvCRkQ+fGG+AJKYENK/TjFGre98Sp6jO6xsX2n10dOW5GJQBa1plV80Q==",
+  "dgSpecHash": "gGeKg6r1dk8bf9diP2ZBBY1P/al+XjDtBehfydP5fMt1eyfmyCqsXWlIPDKDWAwKowTr+aU+nYgRWSDQVNOMVw==",
   "success": true,
-  "projectFilePath": "/mnt/c/Users/Eduardo/source/repos/Eduardo-J-Morales/Desktop-Document-Tagging-Utility/CSharpApi/CSharpApi.csproj",
+  "projectFilePath": "/home/duardo/Desktop-Document-Tagging-Utility/CSharpApi/CSharpApi.csproj",
   "expectedPackageFiles": [
     "/home/duardo/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.2/microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512",
     "/home/duardo/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.2/microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
