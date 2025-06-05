@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/AI-Powered-Local-Document-Semantic-Search-Engine.props" />
+</Project>

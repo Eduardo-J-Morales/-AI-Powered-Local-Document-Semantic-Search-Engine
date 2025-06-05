@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "AI-Powered-Local-Document-Semantic-Search-Engine/1.0.0": {
+        "runtime": {
+          "AI-Powered-Local-Document-Semantic-Search-Engine.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AI-Powered-Local-Document-Semantic-Search-Engine/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
