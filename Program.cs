@@ -32,6 +32,20 @@ app.MapPost("/api/upload", async (HttpRequest request, AppDbContext db) =>
             using var reader = new StreamReader(stream);
             text = await reader.ReadToEndAsync();
         }
+        else if (ext == ".pdf")
+        {
+            using (var pdf = PdfDocument.Open(stream))
+            {
+                foreach (var page in pdf.GetPages())
+                {
+                    text += page.Text + "\n";
+                }
+            }
+        }
+        else if (ext == ".docx")
+        {
+            using var ms = new MemoryStream();
+        }
     }
 });
 
