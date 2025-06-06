@@ -24,6 +24,14 @@ app.MapPost("/api/upload", async (HttpRequest request, AppDbContext db) =>
     foreach (var file in files)
     {
         string text = "";
+        var ext = Path.GetExtension(file.FileName).ToLower();
+        using var stream = file.OpenReadStream();
+
+        if (ext == ".text")
+        {
+            using var reader = new StreamReader(stream);
+            text = await reader.ReadToEndAsync();
+        }
     }
 });
 
