@@ -11,8 +11,6 @@
 /home/duardo/AI-Powered-Local-Document-Semantic-Search-Engine/obj/Debug/net8.0/AI-Powered-Local-Document-Semantic-Search-Engine.AssemblyInfo.cs
 /home/duardo/AI-Powered-Local-Document-Semantic-Search-Engine/obj/Debug/net8.0/AI-Powered-Local-Document-Semantic-Search-Engine.csproj.CoreCompileInputs.cache
 /home/duardo/AI-Powered-Local-Document-Semantic-Search-Engine/obj/Debug/net8.0/AI-Powered-Local-Document-Semantic-Search-Engine.MvcApplicationPartsAssemblyInfo.cache
-/home/duardo/AI-Powered-Local-Document-Semantic-Search-Engine/obj/Debug/net8.0/AI-Powered-Local-Document-Semantic-Search-Engine.RazorAssemblyInfo.cache
-/home/duardo/AI-Powered-Local-Document-Semantic-Search-Engine/obj/Debug/net8.0/AI-Powered-Local-Document-Semantic-Search-Engine.RazorAssemblyInfo.cs
 /home/duardo/AI-Powered-Local-Document-Semantic-Search-Engine/obj/Debug/net8.0/AI-Powered-Local-Document-Semantic-Search-Engine.sourcelink.json
 /home/duardo/AI-Powered-Local-Document-Semantic-Search-Engine/obj/Debug/net8.0/staticwebassets.build.json
 /home/duardo/AI-Powered-Local-Document-Semantic-Search-Engine/obj/Debug/net8.0/staticwebassets.development.json
@@ -21,9 +19,7 @@
 /home/duardo/AI-Powered-Local-Document-Semantic-Search-Engine/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.AI-Powered-Local-Document-Semantic-Search-Engine.props
 /home/duardo/AI-Powered-Local-Document-Semantic-Search-Engine/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.AI-Powered-Local-Document-Semantic-Search-Engine.props
 /home/duardo/AI-Powered-Local-Document-Semantic-Search-Engine/obj/Debug/net8.0/staticwebassets.pack.json
-/home/duardo/AI-Powered-Local-Document-Semantic-Search-Engine/obj/Debug/net8.0/scopedcss/Pages/Shared/_Layout.cshtml.rz.scp.css
 /home/duardo/AI-Powered-Local-Document-Semantic-Search-Engine/obj/Debug/net8.0/scopedcss/bundle/AI-Powered-Local-Document-Semantic-Search-Engine.styles.css
-/home/duardo/AI-Powered-Local-Document-Semantic-Search-Engine/obj/Debug/net8.0/scopedcss/projectbundle/AI-Powered-Local-Document-Semantic-Search-Engine.bundle.scp.css
 /home/duardo/AI-Powered-Local-Document-Semantic-Search-Engine/obj/Debug/net8.0/AI-Powered-Local-Document-Semantic-Search-Engine.dll
 /home/duardo/AI-Powered-Local-Document-Semantic-Search-Engine/obj/Debug/net8.0/refint/AI-Powered-Local-Document-Semantic-Search-Engine.dll
 /home/duardo/AI-Powered-Local-Document-Semantic-Search-Engine/obj/Debug/net8.0/AI-Powered-Local-Document-Semantic-Search-Engine.pdb

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AI-Powered-Local-Document-Semantic-Search-Engine")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1721baee40e6ec9c6891cf687c400e08fb12815c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8aefae94ae2acfd659144becbbb5061ab1ecfad2")]
 [assembly: System.Reflection.AssemblyProductAttribute("AI-Powered-Local-Document-Semantic-Search-Engine")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AI-Powered-Local-Document-Semantic-Search-Engine")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
