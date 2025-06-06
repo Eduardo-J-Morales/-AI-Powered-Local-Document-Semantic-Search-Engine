@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> AI-Powered Local Document Semantic Search </title>
+</head>
+<body>
+    <form action="" id="uploadForm" enctype="multipart/form-data">
+        <input type="file" id="fileInput" name="files" accept=".pdf,.txt,.docx" multiple>
+        <button type="submit">Upload</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById("uploadForm").onsubmit = async function(e) {
+            e.preventDefault();
+            const files = document.getElementById("fileInput").files;
+            
+        }
+    </script>
+</body>
+</html>
