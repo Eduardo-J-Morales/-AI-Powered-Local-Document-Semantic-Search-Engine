@@ -7,8 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql("Host=localhost;Database=yourdb;Username=youruser;Password=yourpassword"));
-
+    options.UseNpgsql("Host=localhost;Database=documents;Username=postgres;Password=1234"));    
 var app = builder.Build();
 
 app.UseHttpsRedirection();
@@ -45,10 +44,31 @@ app.MapPost("/api/upload", async (HttpRequest request, AppDbContext db) =>
         else if (ext == ".docx")
         {
             using var ms = new MemoryStream();
+            await stream.CopyToAsync(ms);
+            ms.Position = 0;
+            using var doc = DocX.Load(ms);
+            text = doc.Text;
         }
+
+        var fileData = new FileData
+        {
+            FileName = file.FileName,
+            Length = file.Length,
+            ExtractedText = text
+        };
+
+        db.Files.Add(fileData);
+        results.Add(fileData);
     }
+    await db.SaveChangesAsync();
+    return Results.Ok(results);
 });
 
+app.MapGet("/api/files", async (AppDbContext db) =>
+{
+    var files = await db.Files.ToListAsync();
+    return Results.Ok(files);
+});
 app.Run();
 
 public class FileData
