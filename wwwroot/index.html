@@ -12,6 +12,9 @@
     </form>
     <div id="result"></div>
     <script>
+
+      fetch('/api/files')
+
     document.getElementById('uploadForm').onsubmit = async function(e) {
       e.preventDefault();
       const files = document.getElementById('fileInput').files;
