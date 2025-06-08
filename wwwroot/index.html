@@ -10,14 +10,32 @@
       <input type="file" id="fileInput" name="files" multiple />
       <button type="submit">Upload</button>
     </form>
-    <div id="result"></div>
+    <h1>Uploaded Files</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>File Name</th>
+                <th>Length</th>
+                <th>Extracted Text</th>
+            </tr>
+        </thead>
+        <tbody id="filesTable"></tbody>
+    </table>
     <script>
 
-      fetch('/api/files')
+      function loadFiles() {
+        fetch('/api/files').then(res => res.json()).then(files => {
+          
+        })
+      }
+window.onload = function() {
+  loadFiles()
+}
 
     document.getElementById('uploadForm').onsubmit = async function(e) {
       e.preventDefault();
-      const files = document.getElementById('fileInput').files;
+      const files = document.get('fileInput').files;
       const formData = new FormData();
       for (let file of files) formData.append('files', file);
 
@@ -27,7 +45,7 @@
       });
       
       const data = await response.json();
-      document.getElementById('result').innerText = JSON.stringify(data, null, 2);
+      console.log(data)
     };
     </script>
 </body>
