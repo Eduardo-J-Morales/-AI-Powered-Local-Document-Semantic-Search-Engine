@@ -78,6 +78,7 @@ public class FileData
     public long Length { get; set; }
     public string ExtractedText { get; set; } = "";
 }
+
 public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
